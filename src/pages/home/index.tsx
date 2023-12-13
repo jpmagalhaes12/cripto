@@ -38,6 +38,7 @@ export function Home(){
                         formatedPrice: price.format(Number(item.price)),
                         formatedMarket: price.format(Number(item.market_cap))
                     }
+
                     return formated;
                 })
 
@@ -66,22 +67,24 @@ export function Home(){
                     </tr>
                 </thead>
                 <tbody id='tbody'>
-                    <tr className={styles.tr}>
+                   {coins.map( coin => (
+                    <tr key="coin.name" className={styles.tr}>
                         <td className={styles.tdLabel} data-label="Moeda">
-                            <Link to="/detail/btc"  className={styles.link}>
-                                <span>Bitcoin</span> | BTC
+                            <Link to={`/detail/${coin.symbol}`} className={styles.link}>
+                                <span>{coin.name}</span> | {coin.symbol}
                             </Link>
                         </td>
                         <td className={styles.tdLabel} data-label="Mercado">
-                            R$ 19293
+                            {coin.formatedMarket}
                         </td>
                         <td className={styles.tdLabel} data-label="Preço">
-                            R$ 40.962
+                            {coin.formatedPrice}
                         </td>
-                        <td className={styles.tdLoss} data-label="Volume">
-                            <span>-5.3</span>
+                        <td className={styles.tdLabel} data-label="Volume">
+                            <span>{coin.delta_24h}</span>
                         </td>
                     </tr>
+                   ))}
                 </tbody>
             </table>
         </main>
