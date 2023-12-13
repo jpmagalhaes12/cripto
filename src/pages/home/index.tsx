@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { FormEvent, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './home.module.css';
 import { CiSearch } from 'react-icons/ci';
 
@@ -20,6 +20,8 @@ interface DataProps {
 
 export function Home(){
     const [coins, setCoins] = useState<CoinProps[]>([]);
+    const [inputValue, setInputValue] = useState("");
+    const navigate = useNavigate();
     useEffect(() => {
         function getData() {
             fetch('https://sujeitoprogramador.com/api-cripto/?key=df0ad826b87a3771')
@@ -48,10 +50,19 @@ export function Home(){
         getData();
     },[])
 
+    function handleSearch(e: FormEvent){
+        e.preventDefault();
+        if(inputValue === "") return;
+
+        navigate(`/detail/${inputValue}`);
+    }
     return(
         <main className={styles.container}>
-            <form className={styles.form}>
-                <input type="text" placeholder='Digite o símbolo da moeda: BTC...'/>
+            <form className={styles.form} onSubmit={handleSearch}>
+                <input type="text" placeholder='Digite o símbolo da moeda: BTC...'
+                value={inputValue}
+                onChange={ (e) => setInputValue(e.target.value)}
+                />
                 <button type='submit'>
                     <CiSearch size={30} color="#FFF"/>
                 </button>
