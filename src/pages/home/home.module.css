@@ -53,10 +53,13 @@ table th{
     font-size: 18px;
     color: white;
 }
-
-.tdLabel,
-.tdProfit,
+.tdProfit{
+    color: greenyellow;
+}
 .tdLoss{
+    color: red;
+}
+.tdLabel{
     color: #BBB;
 }
 .link{

@@ -15,7 +15,8 @@ interface CoinProp{
     formatedMarket: string,
     formatedLowPrice: string,
     formatedHighPrice: string,
-    error: string
+    error: string,
+    numberDelta: number
 }
 
 
@@ -44,6 +45,7 @@ export function Detail(){
                     formatedMarket: price.format(Number(data.market_cap)),
                     formatedLowPrice: price.format(Number(data.low_24h)),
                     formatedHighPrice: price.format(Number(data.high_24h)),
+                    numberDelta: parseFloat(data.delta_24h.replace(",","."))
 
                 }
                 setDetail(resultData);
@@ -75,7 +77,10 @@ export function Detail(){
                     <strong>Menor preço 24h: </strong> {detail?.formatedLowPrice}
                 </p>
                 <p>
-                    <strong>Delta 24h: </strong> {detail?.delta_24h}
+                    <strong>Delta 24h: </strong> 
+                    <span className={detail?.numberDelta && detail?.numberDelta >= 0 ? styles.tdProfit : styles.tdLoss}>
+                        {detail?.delta_24h}
+                    </span>
                 </p>
                 <p>
                     <strong>Valor mercado: </strong> {detail?.formatedMarket}

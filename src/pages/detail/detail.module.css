@@ -24,3 +24,9 @@
 .content p:not(:last-of-type){
     margin-bottom: 16px;
 }
+.tdProfit{
+    color: greenyellow;
+}
+.tdLoss{
+    color: red;
+}
