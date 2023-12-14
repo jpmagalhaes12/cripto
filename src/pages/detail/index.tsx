@@ -51,14 +51,32 @@ export function Detail(){
     if(loading){
         return(
             <div className={styles.container}>
-                <h4 className={styles.center}>Carregando informações</h4>
+                <h4 className={styles.center}>Carregando informações...</h4>
             </div>
         )
     }
     return(
-        <div>
+        <div className={styles.container}>
             <h1 className={styles.center}>{detail?.name}</h1>
             <p className={styles.center}>{detail?.symbol}</p>
+
+            <section className={styles.content}>
+                <p>
+                    <strong>Preço: </strong> {detail?.formatedPrice}
+                </p>
+                <p>
+                    <strong>Maior preço 24h: </strong> {detail?.formatedHighPrice}
+                </p>
+                <p>
+                    <strong>Menor preço 24h: </strong> {detail?.formatedLowPrice}
+                </p>
+                <p>
+                    <strong>Delta 24h: </strong> {detail?.delta_24h}
+                </p>
+                <p>
+                    <strong>Valor mercado: </strong> {detail?.formatedMarket}
+                </p>
+            </section>
         </div>
     )
 }
